@@ -32,8 +32,11 @@
 
 # Agregar pasarela de pagos de película comprada (Simulación)
 
+![alt text](docs/checkout1.png)
 
+![alt text](docs/checkout2.png)
 
+![alt text](docs/checkout3.png)
 
 # Agregar tests al proyecto
 
