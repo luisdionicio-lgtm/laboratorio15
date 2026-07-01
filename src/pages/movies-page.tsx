@@ -1,12 +1,13 @@
 import { Search } from "lucide-react";
-import { useState } from "react";
 
 import PageContainer from "@/components/layout/page-container";
 import MoviesGrid from "@/components/movies/movies-grid";
 import { Input } from "@/components/ui/input";
+import { useMoviesFilterStore } from "@/store/movies-filter-store";
 
 export function MoviesPage() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const searchTerm = useMoviesFilterStore((state) => state.searchQuery);
+  const setSearchTerm = useMoviesFilterStore((state) => state.setSearchQuery);
 
   return (
     <PageContainer>
