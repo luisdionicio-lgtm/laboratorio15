@@ -1,10 +1,18 @@
+import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { usePopularMovies } from "@/hooks/use-movies";
+import { useMoviesFilterStore } from "@/store/movies-filter-store";
 
 import MovieCard from "./movie-card";
 
 const MoviesGrid = () => {
   const { data: movies, isError, isLoading } = usePopularMovies();
+  const searchQuery = useMoviesFilterStore((state) => state.searchQuery);
+  const setSearchQuery = useMoviesFilterStore((state) => state.setSearchQuery);
+
+  const filteredMovies = movies?.filter((movie) =>
+    movie.title.toLowerCase().includes(searchQuery.trim().toLowerCase()),
+  );
 
   return (
     <section className="py-4">
@@ -16,6 +24,13 @@ const MoviesGrid = () => {
         <p className="mt-2 text-muted-foreground">
           Most popular releases right now.
         </p>
+
+        <Input
+          value={searchQuery}
+          onChange={(event) => setSearchQuery(event.target.value)}
+          placeholder="Search movies by title..."
+          className="mt-4 h-10 max-w-sm"
+        />
       </header>
 
       {isLoading && (
@@ -35,7 +50,7 @@ const MoviesGrid = () => {
         </p>
       )}
 
-      {movies && (
+      {filteredMovies && filteredMovies.length > 0 && (
         <div
           className="
             grid
@@ -44,13 +59,19 @@ const MoviesGrid = () => {
             lg:grid-cols-3
           "
         >
-          {movies.map((movie) => (
+          {filteredMovies.map((movie) => (
             <MovieCard
               key={movie.id}
               movie={movie}
             />
           ))}
         </div>
+      )}
+
+      {filteredMovies && filteredMovies.length === 0 && (
+        <p className="text-sm text-muted-foreground">
+          No movies match "{searchQuery}".
+        </p>
       )}
     </section>
   );
