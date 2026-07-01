@@ -30,6 +30,16 @@ const MovieCard = ({ movie }: Props) => {
         </CardHeader>
 
         <CardContent>
+          <div className="mb-3 flex items-center justify-between text-xs text-muted-foreground">
+            <span>
+              {movie.releaseDate ? movie.releaseDate.slice(0, 4) : "TBA"}
+            </span>
+
+            <span>
+              {movie.rating.toFixed(1)} / 10
+            </span>
+          </div>
+
           <p className="mb-4 text-sm text-muted-foreground">
             {movie.synopsis}
           </p>

@@ -1,3 +1,10 @@
+import PageContainer from "@/components/layout/page-container";
+import MoviesGrid from "@/components/movies/movies-grid";
+
 export function MoviesPage() {
-  return <h1>Movies</h1>;
+  return (
+    <PageContainer>
+      <MoviesGrid />
+    </PageContainer>
+  );
 }
