@@ -18,13 +18,23 @@
 
 
 
+# Desarrollar todas los pages * diferente rutas con puerto
 
-# Desarrollar todas los pages
+... PAGES HOME
+![alt text](docs/home.png)
 
+... PAGES MOVIES
+![alt text](docs/movies.png)
 
+... VIEWDETALLES
+
+![alt text](docs/viewdetalles.png)
 
 # Agregar pasarela de pagos de película comprada (Simulación)
 
 
 
+
 # Agregar tests al proyecto
+
+![alt text](docs/capt7.png)

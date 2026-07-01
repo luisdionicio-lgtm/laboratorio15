@@ -3,18 +3,34 @@ import { usePopularMovies } from "@/hooks/use-movies";
 
 import MovieCard from "./movie-card";
 
-const MoviesGrid = () => {
+interface Props {
+  description?: string;
+  limit?: number;
+  searchTerm?: string;
+  title?: string;
+}
+
+const MoviesGrid = ({
+  description = "Most popular releases right now.",
+  limit,
+  searchTerm = "",
+  title = "Featured Movies",
+}: Props) => {
   const { data: movies, isError, isLoading } = usePopularMovies();
+  const normalizedSearch = searchTerm.trim().toLowerCase();
+  const filteredMovies = movies
+    ?.filter((movie) => movie.title.toLowerCase().includes(normalizedSearch))
+    .slice(0, limit);
 
   return (
     <section className="py-4">
       <header className="mb-8">
         <h2 className="text-3xl font-bold">
-          Featured Movies
+          {title}
         </h2>
 
         <p className="mt-2 text-muted-foreground">
-          Most popular releases right now.
+          {description}
         </p>
       </header>
 
@@ -35,7 +51,7 @@ const MoviesGrid = () => {
         </p>
       )}
 
-      {movies && (
+      {filteredMovies && filteredMovies.length > 0 && (
         <div
           className="
             grid
@@ -44,12 +60,22 @@ const MoviesGrid = () => {
             lg:grid-cols-3
           "
         >
-          {movies.map((movie) => (
+          {filteredMovies.map((movie) => (
             <MovieCard
               key={movie.id}
               movie={movie}
             />
           ))}
+        </div>
+      )}
+
+      {filteredMovies && filteredMovies.length === 0 && (
+        <div className="rounded-lg border border-dashed p-10 text-center">
+          <p className="font-medium">No movies found</p>
+
+          <p className="mt-2 text-sm text-muted-foreground">
+            Try another title from the current TMDB popular list.
+          </p>
         </div>
       )}
     </section>

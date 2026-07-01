@@ -10,7 +10,7 @@ const HomePage = () => {
       </PageContainer>
 
       <PageContainer>
-        <MoviesGrid />
+        <MoviesGrid limit={6} />
       </PageContainer>
     </>
   );
