@@ -17,6 +17,7 @@
 # Implementar estado global (Zustand)
 ![alt text](docs/capt4.png)
 
+![alt text](docs/busqueda.png)
 
 # Desarrollar todas los pages * diferente rutas con puerto
 
