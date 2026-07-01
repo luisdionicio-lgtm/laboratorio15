@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 
 import PageContainer from "@/components/layout/page-container";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useMovieDetails } from "@/hooks/use-movies";
 
@@ -120,6 +121,12 @@ export function MovieDetailPage() {
                 {movie.synopsis}
               </p>
             </section>
+
+            <Button asChild size="lg" className="mt-8">
+              <Link to={`/movies/${movie.id}/checkout`}>
+                Comprar por $4.99
+              </Link>
+            </Button>
           </div>
         </article>
       </PageContainer>
