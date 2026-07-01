@@ -15,7 +15,7 @@
 ![alt text](docs/capt33.png)
 
 # Implementar estado global (Zustand)
-
+![alt text](docs/capt4.png)
 
 
 
